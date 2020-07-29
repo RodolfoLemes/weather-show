@@ -41,49 +41,79 @@ function App() {
 
   return (
     <div className="App">
-      { addBtn === true
-        ? (
-          <div>
-            <button onClick={() => isAddBtn(!addBtn)}>Adicionar</button>
-          </div>
-        )
-        : (
-          <div>
-            <input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
-            <button onClick={() => { requestAPI(city); setCity(''); isAddBtn(!addBtn) }}>Pesquisar</button>
-          </div>
-        )   
-      }
+      <div className='pageHeader'>
+        <div className='pageHeaderButton'>
+          { addBtn === true
+            ? (
+              <div>
+                <button onClick={() => isAddBtn(!addBtn)}>Adicionar</button>
+              </div>
+            )
+            : (
+              <div>
+                <input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
+                <button onClick={() => { requestAPI(city); setCity(''); isAddBtn(!addBtn) }}>Pesquisar</button>
+              </div>
+            )   
+          }
+        </div>
 
-      { dados.length === 0 
-        ? (null)
-        : (
-          <div>
-            <text>{ dados[0].wind.speed + 'm/s' }</text>
-            <text>{ dados[0].weather[0].description }</text>
-            <text>{ "Nascer do sol: " + new Date(dados[0].sys.sunrise*1000).toLocaleTimeString() }</text>
-            <text>{ "Pôr do sol: " + new Date(dados[0].sys.sunset*1000).toLocaleTimeString() }</text>
-            <div>
-              <text>{ dados[0].main.temp + "°" }</text>
-              <text>{ dados[0].name + " - " + dados[0].sys.country }</text>
+        { dados.length === 0 
+          ? (null)
+          : (
+            <div className='pageHeaderContent'>
+              <div className='pageHeaderContentData'>
+                <div className='content'>
+                  <text>{ dados[0].wind.speed + 'm/s' }</text>
+                </div>
+                <div className='content'>
+                  <text>{ dados[0].weather[0].description }</text>
+                </div>
+                <div className='content'>
+                  <text>{ "Nascer do sol: " + new Date(dados[0].sys.sunrise*1000).toLocaleTimeString() }</text>
+                </div>
+                <div className='content'>
+                  <text>{ "Pôr do sol: " + new Date(dados[0].sys.sunset*1000).toLocaleTimeString() }</text>
+                </div>
+              </div>
+              <div className='pageHeaderContentData' id='contentRight'>
+                <div className='dataTemp'>
+                  <text>{ dados[0].main.temp + "°" }</text>
+                </div>
+                <div className='dataName'>
+                  <text>{ dados[0].name + " - " + dados[0].sys.country }</text>
+                </div>
+              </div>
             </div>
-          </div>
-        )  
-      }
-
-      <br/>
+          )  
+        }
+      </div>
 
       { dados.map((element, index) => {
         if(index !== 0) {
           return (
-            <div key={index}>
-              <text>{ element.wind.speed + 'm/s' }</text>
-              <text>{ element.weather[0].description }</text>
-              <text>{ "Nascer do sol: " + new Date(element.sys.sunrise*1000).toLocaleTimeString() }</text>
-              <text>{ "Pôr do sol: " + new Date(element.sys.sunset*1000).toLocaleTimeString() }</text>
-              <div>
-                <text>{ element.main.temp + "°" }</text>
-                <text>{ element.name + " - " + element.sys.country }</text>
+            <div key={index} className='outerContent'>
+              <div className='pageHeaderContentData' >
+                <div className='content'>
+                  <text>{ element.wind.speed + 'm/s' }</text>
+                </div>
+                <div className='content'>
+                  <text>{ element.weather[0].description }</text>
+                </div>
+                <div className='content'>
+                  <text>{ "Nascer do sol: " + new Date(element.sys.sunrise*1000).toLocaleTimeString() }</text>
+                </div>
+                <div className='content'>
+                  <text>{ "Pôr do sol: " + new Date(element.sys.sunset*1000).toLocaleTimeString() }</text>
+                </div>
+              </div>
+              <div className='pageHeaderContentData' id='contentRight2'>
+                <div className='dataTemp'>
+                  <text>{ element.main.temp + "°" }</text>
+                </div>
+                <div className='dataName'>
+                  <text>{ element.name + " - " + element.sys.country }</text>
+                </div>
               </div>
             </div>
           )
