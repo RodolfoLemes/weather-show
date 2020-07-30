@@ -26,7 +26,7 @@ function App() {
   async function requestAPI(cidade) {
     const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cidade}`, {
       params: {
-        appid: '9422a4dbd1cc9b3a0e4d8412b8b2b5e6',
+        appid: 'SUA_API_KEY_DO_OPENWEATHER',
         lang: 'pt_br',
         units: 'metric',
       }
